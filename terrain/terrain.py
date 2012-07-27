@@ -380,21 +380,26 @@ class Terrain():
 			t=Tree(pos, dbh=dbh,terrain=self, height=height, weight=weight, logWeight=logWeight, vol=vol, specie=specie, gvl_75=gvl_75, dstump=dstump)
 			if dbh>biggestDBH: biggestDBH=dbh
 		print "biggest dbh:", biggestDBH, "m"
-		f.close()				
+		f.close()
+		
 	def GetVisibleObstacles(self,pos, R):
 		#Get obstacles in a radius R from point pos. Optimize: let the obstacles be in a grid and only search those in adjacent grids.
 		obstList=self.getNeighborObst(pos, Lmax=R)
 		return [o for o in obstList if o.visible and getDistance(pos, o.pos)< o.radius+R]
+	
 	def GetTrees(self, pos, R, onlyNonHarvested=False):
 		obstList=self.getNeighborObst(pos, Lmax=R)
 		if onlyNonHarvested: obstList=[t for t in obstList if isinstance(t,Tree) and not t.harvested]
 		return [t for t in obstList if isinstance(t,Tree) and getDistance(pos, t.pos)< t.radius+R]
+	
 	def GetRoots(self, pos, R):
 		obstList=self.getNeighborObst(pos, Lmax=R)
 		return [r for r in obstList if isinstance(r,Root) and getDistance(pos, r.pos)< r.radius+R ]
+	
 	def GetStumps(self,pos,R):
 		obstList=self.getNeighborObst(pos, Lmax=R)
 		return [s for s in obstList if isinstance(s,Stump) and getDistance(pos, s.pos)< s.radius+R ]
+	
 	def GetBoulders(self, pos, R, distr='exp', alpha=1.1):
 		"""
 		we choose to base all this on the volume

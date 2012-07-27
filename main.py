@@ -14,6 +14,7 @@ import numpy as np
 ##########################################################
 ## MAIN FUNCTION
 ##########################################################
+"""Would be good with some comments maybe?!"""
 if __name__=='__main__':
 	anim=False
 	iterations=2 #default
@@ -119,14 +120,13 @@ if __name__=='__main__':
 		G=tools.globalVar()
 		G.noMonitors=True
 		G.seed=seed
-		TH.testMemory()
 		#G.terrain=PlantMTerrain(G, ttype='0')
 	   	#s=PM.PlantmSim(vis=True,anim=anim,G=G, mtype='2a4h')
 		#TH.ThinningSim(vis=True,anim=anim,G=G, head='BC', nCranes=2)
 		#G.terrain=PlantMTerrain(G, ttype='5')
 		G.plotDelay=10
 	   	#s=PM.PlantmSim(vis=True,anim=anim,G=G, mtype='2a4h')
-		TH.ThinningSim(vis=True,anim=anim,G=G, head='BC', nCranes=2, bundler=True, twigCrack=True, observer=True)
+		TH.ThinningSim(vis=True,anim=anim,G=G, head='BC', nCranes=2, bundler=False, twigCrack=True, observer=True)
 		#FW.ForwarderSim(vis=True, anim=anim, G=G)
 		#FW.simRandomRoad(vis=True, anim=anim, G=G)
 		#cProfile.run('FW.ForwarderSim(vis=True, anim=anim, G=G)')
